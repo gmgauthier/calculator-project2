@@ -13,7 +13,6 @@ import java.net.http.HttpResponse;
 public class CalculatorClient {
 
     private static final String ROOT_URL = "http://localhost:8000/";
-    static URI targetURI;
     static HttpClient httpClient;
 
     public static void main(String[] args)

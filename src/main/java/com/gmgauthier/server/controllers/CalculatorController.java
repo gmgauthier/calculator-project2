@@ -1,4 +1,4 @@
-package com.gmgauthier.controllers;
+package com.gmgauthier.server.controllers;
 
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.gmgauthier.requests;
+package com.gmgauthier.server.requests;
 
 import com.hackerrank.test.utility.OrderedTestRunner;
 import com.hackerrank.test.utility.TestWatchman;

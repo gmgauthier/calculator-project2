@@ -7,7 +7,6 @@ import com.hackerrank.test.utility.OrderedTestRunner;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -16,6 +15,7 @@ import java.math.BigDecimal;
 import java.net.URISyntaxException;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static org.junit.Assert.assertEquals;
 
 @SpringBootTest
 @RunWith(OrderedTestRunner.class)
@@ -41,7 +41,7 @@ public class CalculatorClientTests {
                                 .withBody("{\"sum\": 4}")));
         CalculatorClient calc = new CalculatorClient();
         Integer resp = calc.getSum(2,2);//two plus two
-        Assertions.assertEquals(4, resp.intValue());
+        assertEquals(4, resp.intValue());
     }
 
     @Test
@@ -55,7 +55,7 @@ public class CalculatorClientTests {
                                 .withBody("{\"difference\": 4}")));
         CalculatorClient calc = new CalculatorClient();
         Integer resp = calc.getDifference(6,2); //six minus two
-        Assertions.assertEquals(4, resp.intValue());
+        assertEquals(4, resp.intValue());
     }
 
     @Test
@@ -69,7 +69,7 @@ public class CalculatorClientTests {
                                 .withBody("{\"product\": 4}")));
         CalculatorClient calc = new CalculatorClient();
         Integer resp = calc.getProduct(2,2);//two times two
-        Assertions.assertEquals(4, resp.intValue());
+        assertEquals(4, resp.intValue());
     }
 
     @Test
@@ -83,6 +83,6 @@ public class CalculatorClientTests {
                                 .withBody("{\"quotient\": 4}")));
         CalculatorClient calc = new CalculatorClient();
         BigDecimal resp = calc.getQuotient(8,2);//eight divided by two
-        Assertions.assertEquals(BigDecimal.valueOf(4), resp);
+        assertEquals(BigDecimal.valueOf(4), resp);
     }
 }

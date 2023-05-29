@@ -45,19 +45,13 @@ public class CalculatorClient {
         return (Integer) new JSONObject(makeRequest(addUrl, postJson).body()).get("product");
     }
 
-    public BigDecimal getQuotient(Integer operanda, Integer operandb)
+    public Double getQuotient(Integer operanda, Integer operandb)
             throws URISyntaxException, IOException, InterruptedException {
         URI addUrl = new URI(DEFAULT_ROOT_URL + "/quotient");
         JSONObject postJson = new JSONObject().put("values", new Integer[] {operanda, operandb});
         JSONObject response = new JSONObject(makeRequest(addUrl, postJson).body());
         String val = response.get("quotient").toString();
-        BigDecimal quotient;
-        try {
-            quotient = BigDecimal.valueOf(Long.parseLong(val));
-        } catch (Exception e){
-            quotient = BigDecimal.valueOf(Integer.parseInt(val));
-        }
-        return quotient;
+        return Double.valueOf(val);
     }
 
     private HttpResponse<String> makeRequest(URI uri, JSONObject jsonBody)

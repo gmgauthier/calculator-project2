@@ -11,7 +11,6 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.net.URISyntaxException;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
@@ -73,7 +72,7 @@ public class CalculatorClientTests {
     }
 
     @Test
-    public void testDivision() throws URISyntaxException, IOException, InterruptedException {
+    public void testWholeNumberDivision() throws URISyntaxException, IOException, InterruptedException {
         stubFor(
                 post(urlEqualTo("/quotient"))
                         .withHeader("Content-Type", equalTo("application/json"))
@@ -82,7 +81,21 @@ public class CalculatorClientTests {
                                 .withHeader("Content-Type", "application/json")
                                 .withBody("{\"quotient\": 4}")));
         CalculatorClient calc = new CalculatorClient();
-        BigDecimal resp = calc.getQuotient(8,2);//eight divided by two
-        assertEquals(BigDecimal.valueOf(4), resp);
+        Double resp = calc.getQuotient(8,2);//eight divided by two
+        assertEquals(Double.valueOf(4), resp);
+    }
+
+    @Test
+    public void testDecimalDivision() throws URISyntaxException, IOException, InterruptedException {
+        stubFor(
+                post(urlEqualTo("/quotient"))
+                        .withHeader("Content-Type", equalTo("application/json"))
+                        .willReturn(aResponse()
+                                .withStatus(200)
+                                .withHeader("Content-Type", "application/json")
+                                .withBody("{\"quotient\": 3.8}")));
+        CalculatorClient calc = new CalculatorClient();
+        Double resp = calc.getQuotient(19,5);
+        assertEquals(Double.valueOf(3.8), resp);
     }
 }

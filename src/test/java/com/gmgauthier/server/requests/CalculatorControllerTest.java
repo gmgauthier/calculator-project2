@@ -145,4 +145,19 @@ public class CalculatorControllerTest {
 
         Assert.assertEquals("{\"quotient\":2}", response);
     }
+
+    @Test
+    public void testDecimalQuotients() throws Exception {
+        String response = mockMvc.perform(
+                        MockMvcRequestBuilders.post("/quotient")
+                                .content("{\"values\":[19,5]}")
+                                .contentType("application/json")
+                )
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        Assert.assertEquals("{\"quotient\":3.8}", response);
+    }
 }

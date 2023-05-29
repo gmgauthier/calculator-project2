@@ -15,6 +15,7 @@ public class CalculatorApp {
         System.out.println(cc.getProduct(123, 444));
         System.out.println(cc.getDifference(846, 233));
         System.out.println(cc.getQuotient(8, 2));
+        System.out.println(cc.getQuotient(19, 5));
     }
 
 }
